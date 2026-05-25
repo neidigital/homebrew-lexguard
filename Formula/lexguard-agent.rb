@@ -5,21 +5,21 @@
 class LexguardAgent < Formula
   desc "LexGuard agent — React for DevOps"
   homepage "https://lexguard.app"
-  version "0.0.6"
+  version "0.0.7"
   license "Proprietary"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://cdn.lexguard.app/releases/agent/0.0.6/lexguard-agent-0.0.6-darwin-amd64.tar.gz", using: CurlDownloadStrategy
-      sha256 "30df43dd28cfe41159de394e510fc4ca903b894a0c45b758d2f3db351e73281c"
+      url "https://cdn.lexguard.app/releases/agent/0.0.7/lexguard-agent-0.0.7-darwin-amd64.tar.gz", using: CurlDownloadStrategy
+      sha256 "badd81c4fcfb6180dfc147386150c3f25b8308763f642bb4a991773a0a1b93f1"
 
       define_method(:install) do
         bin.install "lexguard-agent"
       end
     end
     if Hardware::CPU.arm?
-      url "https://cdn.lexguard.app/releases/agent/0.0.6/lexguard-agent-0.0.6-darwin-arm64.tar.gz", using: CurlDownloadStrategy
-      sha256 "21af061aeae8d002ca3b575e262d63e35e1917dbb215d47fe9f10ef9db0533f8"
+      url "https://cdn.lexguard.app/releases/agent/0.0.7/lexguard-agent-0.0.7-darwin-arm64.tar.gz", using: CurlDownloadStrategy
+      sha256 "081ba80ec5198adadbfa9ae46f5fb5f0b7cece5a65ebcf22ce7d2fc59cece457"
 
       define_method(:install) do
         bin.install "lexguard-agent"
@@ -29,15 +29,15 @@ class LexguardAgent < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://cdn.lexguard.app/releases/agent/0.0.6/lexguard-agent-0.0.6-linux-amd64.tar.gz", using: CurlDownloadStrategy
-      sha256 "daa0cbd0ba6f697f705560207ed50ccd245efe81991489773050ed3620037d8d"
+      url "https://cdn.lexguard.app/releases/agent/0.0.7/lexguard-agent-0.0.7-linux-amd64.tar.gz", using: CurlDownloadStrategy
+      sha256 "67f6e08d28e45b55bc6b198603294dfb28d8e0e553e3d14319608fc7fa4674a0"
       define_method(:install) do
         bin.install "lexguard-agent"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://cdn.lexguard.app/releases/agent/0.0.6/lexguard-agent-0.0.6-linux-arm64.tar.gz", using: CurlDownloadStrategy
-      sha256 "2c932dac7cb0e70542cf9f625d79dccb23ba4f4b321af18733f593dd35978485"
+      url "https://cdn.lexguard.app/releases/agent/0.0.7/lexguard-agent-0.0.7-linux-arm64.tar.gz", using: CurlDownloadStrategy
+      sha256 "0733d15c82d4232caf090ed3919526df262a5308455cce972cc0b032bbe1ef5c"
       define_method(:install) do
         bin.install "lexguard-agent"
       end
@@ -52,6 +52,10 @@ class LexguardAgent < Formula
       Then start it as a background service:
         brew services start lexguard-agent
 
+      The CLI and the brew service both read/write
+        #{HOMEBREW_PREFIX}/var/lexguard-agent/settings.json
+      so the token persisted by `config set` is the same one launchd uses.
+
       View or change config later:
         lexguard-agent config show
         lexguard-agent config path
@@ -61,6 +65,7 @@ class LexguardAgent < Formula
   service do
     run [opt_bin/"lexguard-agent", "--production", "--log-file=false"]
     keep_alive true
+    environment_variables LEXGUARD_CONFIG_DIR: (var/"lexguard-agent").to_s
     log_path var/"log/lexguard-agent.log"
     error_log_path var/"log/lexguard-agent.err.log"
     working_dir var/"lexguard-agent"
