@@ -5,21 +5,21 @@
 class LexguardAgent < Formula
   desc "LexGuard agent — React for DevOps"
   homepage "https://lexguard.app"
-  version "0.0.21"
+  version "0.0.22"
   license "Proprietary"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://cdn.lexguard.app/releases/agent/0.0.21/lexguard-agent-0.0.21-darwin-amd64.tar.gz", using: CurlDownloadStrategy
-      sha256 "0d5a999ed2bc291037820bf3c0000a918639434423bb88ebf45ebb2af0dfd95d"
+      url "https://cdn.lexguard.app/releases/agent/0.0.22/lexguard-agent-0.0.22-darwin-amd64.tar.gz", using: CurlDownloadStrategy
+      sha256 "4a4ef1e426a03a0c2f33accf32d15675d3b862eb71ef6604dd0f3a89c89afa47"
 
       define_method(:install) do
         bin.install "lexguard-agent"
       end
     end
     if Hardware::CPU.arm?
-      url "https://cdn.lexguard.app/releases/agent/0.0.21/lexguard-agent-0.0.21-darwin-arm64.tar.gz", using: CurlDownloadStrategy
-      sha256 "b6f7067dc103b58f3cb364a45f9f74ee43d742098c46145c27b6bdf5502366f6"
+      url "https://cdn.lexguard.app/releases/agent/0.0.22/lexguard-agent-0.0.22-darwin-arm64.tar.gz", using: CurlDownloadStrategy
+      sha256 "29a202501419682aa8ebd5e66b35e2e0236b583e907db942ddf6dd3dfac1c8e7"
 
       define_method(:install) do
         bin.install "lexguard-agent"
@@ -29,15 +29,15 @@ class LexguardAgent < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://cdn.lexguard.app/releases/agent/0.0.21/lexguard-agent-0.0.21-linux-amd64.tar.gz", using: CurlDownloadStrategy
-      sha256 "2a1b24081aa7464889c4367eabd49e842a73395ec5844c1c94698dfcfa0332c9"
+      url "https://cdn.lexguard.app/releases/agent/0.0.22/lexguard-agent-0.0.22-linux-amd64.tar.gz", using: CurlDownloadStrategy
+      sha256 "02fd9ddfe67d2c615c96db7823e197ac8e5c848a4cde9f3da098d1f2e3d4fcfb"
       define_method(:install) do
         bin.install "lexguard-agent"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://cdn.lexguard.app/releases/agent/0.0.21/lexguard-agent-0.0.21-linux-arm64.tar.gz", using: CurlDownloadStrategy
-      sha256 "e23603546d657b1f43047b18397ec60ba492b0eeadc281ad8d8ad158efa83120"
+      url "https://cdn.lexguard.app/releases/agent/0.0.22/lexguard-agent-0.0.22-linux-arm64.tar.gz", using: CurlDownloadStrategy
+      sha256 "4a4f64ea40975f7c8fa9639f46cad2fabfa8892e591eafa873a323468df29d4e"
       define_method(:install) do
         bin.install "lexguard-agent"
       end
