@@ -1,12 +1,12 @@
 {
-    "version": "0.0.36",
+    "version": "0.0.37",
     "architecture": {
         "64bit": {
-            "url": "https://cdn.lexguard.app/releases/agent/0.0.36/lexguard-agent-0.0.36-windows-amd64.zip",
+            "url": "https://cdn.lexguard.app/releases/agent/0.0.37/lexguard-agent-0.0.37-windows-amd64.zip",
             "bin": [
                 "lexguard-agent.exe"
             ],
-            "hash": "d7243bb12abe76c8843b82445a6c3d34416b5f11151d7d6e00215ffca882f7dc"
+            "hash": "51e148a9c605d322b07c6e8ed96e4518365374b27dbb89419c78f6631aa34e24"
         }
     },
     "homepage": "https://lexguard.app",
